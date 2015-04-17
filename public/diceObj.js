@@ -82,8 +82,29 @@ var counter = 0;
 	}
 
 //this only adds one box. Need to figure out how to make many boxes.
+var rollfill = document.getElementById("rollfill");
+rollfill.onclick = function(){
+ console.log("CLICKED!");
+	var i = 0;
+	while(true && (i < 100)){
+		var $stat = $("#stats-value-"+i);
+		if($stat){
+			var numDice = document.getElementById("numDice").value;
+			var numSides = document.getElementById("numSides").value;
+			var constant = document.getElementById("constant").value;
+			var roll = new Roll(constant);
+			roll.init(numDice, numSides);
+			roll.roll();
+			//$stat.value = roll.sum;
+			$stat.val(roll.sum);  
+			i++;
+			$stat = null;
 
-
+		} else {
+			break;
+		};
+	}
+}
 
 // Person clicks Roll and Fill, you call Roll and Fill Function
 // Define an iterator i
