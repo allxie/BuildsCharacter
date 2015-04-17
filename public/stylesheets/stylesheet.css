@@ -1,0 +1,134 @@
+.header{
+	background-color: #16a085;
+	height: 70px;
+}
+
+.tabs{
+	font-size: 2em;
+	height: 200px; 
+	color: rgb(127, 140, 141); /*Aspestos*/
+	/*color: rgb(52, 73, 94);*/
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.footer{  
+	background-color: #16a085;
+	color: rgb(189, 195, 199);
+}
+
+.result{
+	font-size: 10em;
+}
+.resultnew{
+	font-size: 8em;
+}
+
+input {
+	width: 150px;
+	padding: 5px;
+	margin-bottom: 20px;
+	font-size: 1.4em;
+}
+
+#numSides, #numDice, #constant{
+	height: 50px;
+	width: 70px;
+}
+textarea{
+	/*margin-top: 20px;*/
+	width: 200px;
+	height: 100px;
+}
+.container{
+	height: auto;
+	margin: 0 auto -4em;
+}
+
+.wrapper {
+min-height: 100%;
+height: auto !important;
+height: 100%;
+margin: 0 auto -4em;
+}
+.footer, .push {
+height: 4em;
+}
+* {
+	margin: 0;
+}
+html, body {
+	height: 100%;
+}
+.navbar-default{
+	background-color:#16a085;
+	color: white;
+}
+.navbar{
+	margin-bottom: 0px;
+}
+
+.formbox{
+	margin-top: 100px;
+	border: 2px solid rgb(127, 140, 141);
+	background-color: #16a085;
+	padding: 50px;
+}
+.log > input{
+	width: 200px;
+}
+.bump{
+	margin: 20px;
+}
+.enterStat > input{
+	width: 60px;
+	height: 40px;
+	font-size: 1em;
+	margin: 0;
+}
+
+
+
+#navbar-group a {
+	color:white;
+}
+#navbar-group a:hover {
+	color:rgb(189, 195, 199);
+}
+#statNameBox{
+	width: 70px;
+}
+h3{
+	color: #333333;
+	/*color: rgb(44, 62, 80);*/
+}
+.calc{
+	color:rgb(44, 62, 80) ;
+	background-color: #16a085;
+}
+.noback{
+	background-color: white;
+}
+.spacer{
+	padding: 20px 0px 20px 0px;
+}
+#bigButton{
+	padding: 10px;
+}
+
+img
+{
+	    filter: none;
+    -webkit-filter: none;
+    
+}
+img:hover
+{
+filter: url(filters.svg#grayscale); /* Firefox 3.5+ */
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(1); /* Google Chrome & Safari 6+ */
+}
+
+#create{
+	margin-bottom: 300px;
+}

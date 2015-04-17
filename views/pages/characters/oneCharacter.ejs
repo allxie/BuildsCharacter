@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/stylesheet.css">
+	<script src="https://code.jquery.com/jquery-1.11.2.min.js"> </script>
+	<meta charset="UTF-8">
+	<title>Character</title>
+</head>
+<body>
+<div class="wrapper">
+<!-- navbar -->
+	<div class="navbar navbar-default navbar-static-top" id="navbar-group" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">BuildsCharacter</a>
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="/">Home</a></li>
+				<li><a href="/dice">Dice </a></li>
+				<li><a href="/characters/new"> New Character</a></li>
+				<li><a id="logout" href="#">Logout</a><form id="logoutForm" style="display: none;" action="/logout?_method=DELETE" method="POST"></form></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<!-- end navbar -->
+
+	<div class="container">
+		
+		<div class="bump row">
+			
+		</div>
+		<div class="row">
+			<div class="col-xs-2">
+				<img src="/bluedice.jpeg" height="60px">
+			</div>
+			<div class="col-xs-7">
+				<h1>Name: <%= ejsCharacter.name %></h1>
+				<h3>Gender: <%= ejsCharacter.gender %></h3>
+				<h3>Species/Race: <%= ejsCharacter.race %></h3>
+				<p> Description: <%= ejsCharacter.background %></p>
+				<div><h1>Stats:</h1>
+					<% theStats.forEach(function(stat){ %>
+					<div class="row">
+						<div class="col-xs-2"><%= stat.name %>: </div> <div class="col-xs-1 text-right"><%= stat.value %></div>
+					</div>
+					<% }) %>
+				</div>
+			</div>
+		</div>
+
+	</div> <!-- end container -->
+</div>
+
+<div class="navbar navbar-default navbar-static-bottom" role="navigation">
+	<div class="container">
+		<div class="navbar-text pull-left">
+			<p> &copy; 2015 Allxie Cleary  </p>
+		</div>
+	</div>
+</div>
+<script> 
+$("#logout").click(function(){
+	$("#logoutForm").trigger("submit");
+})
+</script>
+	<script src="/diceObj.js"></script>
+</body>
+</html>

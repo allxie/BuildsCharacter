@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/stylesheet.css">
+	<script src="https://code.jquery.com/jquery-1.11.2.min.js"> </script>
+	<meta charset="UTF-8">
+	<title>Profile</title>
+</head>
+<body>
+<div class="wrapper">
+		<!-- navbar -->
+	<div class="navbar navbar-default navbar-static-top" role="navigation" id="navbar-group">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">BuildsCharacter</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/">Home</a></li>
+					<li><a href="/dice">Dice </a></li>
+					<li><a href="/characters/new"> New Character</a></li>
+					<li><a id="logout" href="#">Logout</a><form id="logoutForm" style="display: none;" action="/logout?_method=DELETE" method="POST"></form></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- end navbar -->
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-10 ">
+					Welcome, <%= ejsUser.email  %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4 col-xs-offset-2">
+
+					<% ejsCharacters.forEach(function(character){  %>
+					<b> Name: </b>
+					<a href="/characters/<%=character.id%>"><%= character.name %> </a><br>
+					<b>Gender:</b>
+					<%= character.gender %> <br>
+					<b>Race/Species: </b>
+					<%= character.race %> <br>
+					<b>Description: </b>
+					<%= character.background %> <br>
+					<form method="POST" action="/characters/<%=character.id%>?_method=DELETE"><button> Delete </button></form>
+					<br>
+					<br>
+					<% }) %>
+				</div>
+				<div class="col-xs-2 col-xs-offset-2">
+					<a id="bigButton" href="/characters/new"><button> <h3>Build a New Character </h3></buton></a>
+				</div>
+			</div>	
+				
+			
+
+	
+
+				<div class="push"></div>
+		</div>
+	</div>
+</div>
+<div class="navbar navbar-default navbar-static-bottom" role="navigation">
+	<div class="container">
+		<div class="navbar-text pull-left">
+			<p> &copy; 2015 Allxie Cleary  </p>
+		</div>
+	</div>
+</div>
+	<script> 
+		$("#logout").click(function(){
+			$("#logoutForm").trigger("submit");
+		})
+	</script>
+</body>
+</html>
