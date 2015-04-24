@@ -12,6 +12,7 @@
 	margin-bottom: 20px;
 }
 
+
 .footer{  
 	background-color: #16a085;
 	color: rgb(189, 195, 199);
@@ -100,6 +101,7 @@ html, body {
 }
 h3{
 	color: #333333;
+	/*color: rgb(127, 140, 141); aspestos*/
 	/*color: rgb(44, 62, 80);*/
 }
 .calc{
@@ -116,8 +118,7 @@ h3{
 	padding: 10px;
 }
 
-img
-{
+img {
 	    filter: none;
     -webkit-filter: none;
     
@@ -130,5 +131,12 @@ filter: url(filters.svg#grayscale); /* Firefox 3.5+ */
 }
 
 #create{
-	margin-bottom: 300px;
+	margin-bottom: 100px;
+}
+
+.descrip{
+	font-size: .7em!important;
+}
+h1{
+	color:#666666!important;
 }

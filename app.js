@@ -79,12 +79,13 @@ app.get("/", function(req, res){
 });
 app.get("/dice", function(req,res){
 	res.render("dice");
-})
+});
 
 //USER ROUTES
 app.get("/signup", function(req,res){
-	res.render("pages/signup")
-})
+	res.render("pages/signup");
+});
+
 //signs the user up
 app.post("/signup", function(req,res){
 	var email = req.body.email;
@@ -97,7 +98,7 @@ app.post("/signup", function(req,res){
 
 app.get("/login", function(req, res){
 	res.render("pages/login");
-})
+});
 
 app.post("/login", function(req, res){
 	var email = req.body.email;
@@ -111,7 +112,7 @@ app.post("/login", function(req, res){
 				req.login(user);
 				res.redirect("/profile")
 			} else {
-				console.log("fuck you, you aren't one of us.")
+				console.log("fuck you, you aren't one of us.");
 				res.redirect("/login");
 				//I want to put a real error message here
 			}
@@ -132,7 +133,6 @@ app.get("/characters", function(req, res){
 		})
 			.then(function(characters){
 				res.render("pages/profile", {ejsUser: dbUser, ejsCharacters: characters});
-
 			});
 		} else {
 			res.redirect("/login");
@@ -145,7 +145,6 @@ app.get("/characters", function(req, res){
 app.delete("/logout", function (req, res){
 	req.logout();
 	res.redirect("/login");
-	
 });
 
 //CHARACTER ROUTES  
@@ -196,12 +195,12 @@ app.post("/characters", function (req, res){
 	var statValue = req.body.stats[0].value;
 	
 	req.currentUser()
-		.then(function (dbUser){
-			if(dbUser){
+		.then(function (dbUser) {
+			if(dbUser) {
 				dbUser.addChar(db, charName, gender, background, race)
-				 .then(function(character){
+				 .then(function (character){
 				 	//this is not the right way to do this. Should do this async. This adds the stats to the character.
-				  for (var i = 0; i < stats.length; i++){
+				  for (var i = 0; i < stats.length; i++) {
 				  	db.Stat.create({CharacterId: character.id, name:stats[i].name, value:stats[i].value
 				 	});
 				  }
@@ -214,9 +213,9 @@ app.post("/characters", function (req, res){
 
 });
 
-app.get("/profile", function(req,res){
-	res.redirect("/characters")
-})
+app.get("/profile", function (req,res) {
+	res.redirect("/characters");
+});
 
 
 
@@ -234,7 +233,13 @@ app.get("/characters/:id", function (req, res){
 	
 });
 
+app.get("/dicestats", function (req, res){
+	res.render("dice_stats");
+});
 
+app.get("/test", function (req, res){
+	res.render("graph_test");
+});
 
 
 app.listen(process.env.PORT || 3000);

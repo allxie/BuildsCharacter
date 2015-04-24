@@ -2,7 +2,6 @@
 //to create dice with numbers of sides
 
 //Die constructor with a number of sides
-
 function Die(numSides){
 	this.numSides = numSides;
 	this.result = 0;
@@ -14,12 +13,14 @@ Die.prototype.roll = function(){
 	return this.result;
 }
 
-
+//this is a constructor for a roll
 function Roll(mod, dice){
 	this.dice = dice || [];
 	this.sum = 0;
 	this.mod = mod || 0;
 }
+
+//This rolls the dice and creates 
 Roll.prototype.roll = function(){
 	this.sum = 0;
 	document.getElementById("individual").innerHTML = "";
@@ -38,7 +39,7 @@ Roll.prototype.roll = function(){
 	this.sum += Number(this.mod);
 	document.getElementById("individual").innerHTML += "Mod " + this.mod;
 };
-
+//initiates the roll by creating the right number of dice of the size we want
 Roll.prototype.init = function(numDice, numSides){
 	while(this.dice.length < numDice) {
 		var die = new Die(numSides);
@@ -47,15 +48,24 @@ Roll.prototype.init = function(numDice, numSides){
 };
 
 
+//end dice speciic stuff
+// // // // // // // // // // // // // // // //
 
 window.onload = function(){
 
-	console.log("running");
 
-//creates a roll
+
+
+//////////////////////////////////////////////
+	console.log("running");
+	
+// MAKES THE ROLL BUTTON WORK on dice page and new character page
+// creates a roll
+// grabs the button that tells it to roll
 var rollBut = document.getElementById("rollBut");
 rollBut.onclick = function(){
 	console.log("clicked");
+	//grabs the three forms
 	var numDice = document.getElementById("numDice").value;
 	var numSides = document.getElementById("numSides").value;
 	var constant = document.getElementById("constant").value;
@@ -63,17 +73,20 @@ rollBut.onclick = function(){
 	roll.init(numDice, numSides);
 	roll.roll();
 	console.log("sum :" + roll.sum);
+	//puts the sum where we want it.
 	document.getElementById("rollsum").innerHTML = roll.sum;
 };
 
-//creates a box
+
+//creates a box on the add character page
 var counter = 0;
+	//This is the name of the button we click to add
 	var el = document.getElementById("addBox");
 	console.log(el);
 
-				var form = document.getElementById("newCharForm");
+	var form = document.getElementById("newCharForm"); //not sure I need this.
 	el.onclick = function(){
-
+//makes the box and connects it to the stat model
 		var stat = $("<div class='enterStat'>" 	
 									+ "Name: <input name='stats[" + counter + "][name]' type='text' placeholder='strength' id='statNameBox'>"
 									+ "Value: <input type='number'name='stats[" + counter + "][value]' id='stats-value-"+counter+"'></div>");
@@ -81,13 +94,17 @@ var counter = 0;
 		$("#putBox").append(stat);
 	}
 
-//this only adds one box. Need to figure out how to make many boxes.
+// Person clicks Roll and Fill, you call Roll and Fill Function
 var rollfill = document.getElementById("rollfill");
 rollfill.onclick = function(){
  console.log("CLICKED!");
+ // Define an iterator i
 	var i = 0;
+	// Start a while loop, while(true) and i is less than 100 -- loop won't break otherwise
 	while(true && (i < 100)){
+		// Use jQuery selector to select each one of the stats-value-i id's one after another
 		var $stat = $("#stats-value-"+i);
+		// if($stat), then: roll the dice and take the result and assign it to $stat.value(diceroll);
 		if($stat){
 			var numDice = document.getElementById("numDice").value;
 			var numSides = document.getElementById("numSides").value;
@@ -99,21 +116,19 @@ rollfill.onclick = function(){
 			$stat.val(roll.sum);  
 			i++;
 			$stat = null;
-
+		// else (meaning jQuery did not find a stat field with id stat-value-i, then break;)
 		} else {
 			break;
 		};
 	}
 }
 
-// Person clicks Roll and Fill, you call Roll and Fill Function
-// Define an iterator i
-// Start a while loop, while(true)
-// Use jQuery selector to select each one of the stats-value-i id's one after another
-// var $stat = $('#stats-value-'+i);
-// if($stat), then: roll the dice and take the result and assign it to $stat.value(diceroll);
-// i++; $stat = null;
-// else (meaning jQuery did not find a stat field with id stat-value-i, then break;)
+
+
+
+
+
+
 
 
 } //end onload

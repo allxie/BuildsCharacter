@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/stylesheet.css">
+	<script src="https://code.jquery.com/jquery-1.11.2.min.js"> </script>
+	<!-- For the charts -->
+	<script type="text/javascript" src="jscharts.js"></script>
+	<meta charset="UTF-8">
+	<title>Dice</title>
+</head>
+<body>
+<div class="wrapper">
+<!-- navbar -->
+	<div class="navbar navbar-default navbar-static-top" id="navbar-group" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">BuildsCharacter</a>
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="/">Home</a></li>
+				<li><a href="/dice">Dice </a></li>
+				<li><a href="/characters/new"> New Character</a></li>
+				<li><a href="/signup">Sign Up</a></li>
+				<li><a href="/login">Login</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<!-- end navbar -->
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<form>
+					
+					How many dice? 
+					<input id="numDice" type="number"  min="1" max="1000" placeholder="#">
+					<input id="numDice2" type="number"  min="1" max="1000" placeholder="#">
+					<br>
+
+					How many sides on the dice?
+					<input id="numSides" type="number" min="2" max="1000" placeholder="D12"><input id="numSides2" type="number" min="2" max="1000" placeholder="D12">
+				 	<br>
+			
+					Add a modifier or leave this blank. Modifier will be added as a constant to the sum of your roll.
+					<input id="constant" type="number"  min="-1000" max="1000" placeholder="mod">
+					<input id="constant2" type="number"  min="-1000" max="1000" placeholder="mod">
+						
+					<br>
+					<button type="button" id="rollStatBut"> Roll </button>
+				</form> 
+			
+					<div id="loading"></div>
+					<div class="col-xs-12" id="rollsum"> </div>
+					<div class="col-xs-12" id="rollsum2"> </div>
+
+					<div id="chartcontainer">This is just a replacement in case Javascript is not available or used for SEO purposes</div>
+				</div>
+			</div>
+
+
+
+
+
+		<div class="push"></div>
+	</div>
+
+<div class="navbar navbar-default navbar-static-bottom" role="navigation">
+	<div class="container">
+		<div class="navbar-text pull-left">
+			<p> &copy; 2015 Allxie Cleary  </p>
+		</div>
+	</div>
+</div>
+<!-- Renders the graph -->
+<script type="text/javascript">
+
+</script>
+	<script src="/stats_and_graphs.js"></script>
+</body>
+</html>

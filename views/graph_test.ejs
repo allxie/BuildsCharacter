@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+<script type="text/javascript" src="jscharts.js"></script>
+
+	<title>Test</title>
+</head>
+<body>
+
+	<div id="chartcontainer">This is just a replacement in case Javascript is not available or used for SEO purposes</div>
+	
+<script type="text/javascript">
+	var myData = new Array(['Unit_1', 20, 10], ['Unit_2', 10, 11], ['Unit_3', 30, 35], ['Unit_4', 10, 25], ['Unit_5', 5, 15]);
+	var myChart = new JSChart('chartcontainer', 'bar');
+	myChart.setDataArray(myData);
+	myChart.draw();
+</script>
+
+</body>
+</html>
