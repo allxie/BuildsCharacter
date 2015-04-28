@@ -32,9 +32,10 @@ input {
 	font-size: 1.4em;
 }
 
-#numSides, #numDice, #constant{
+#numSides, #numDice, #constant, #numSides2, #numDice2, #constant2{
 	height: 50px;
 	width: 70px;
+
 }
 textarea{
 	/*margin-top: 20px;*/

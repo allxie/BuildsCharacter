@@ -39,33 +39,70 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12">
+			<div class="col-xs-4" id="twoRowsForm">
+				<h2>Dice Stat Comparison </h2> 
+				<div> <p> Enter two rolls to compare. Each roll will have a number of dice to add together, a number of sides that are on each of those dice, and an additional number to add as a constant, which can be zero. </p> </div>
 				<form>
-					
-					How many dice? 
-					<input id="numDice" type="number"  min="1" max="1000" placeholder="#">
-					<input id="numDice2" type="number"  min="1" max="1000" placeholder="#">
-					<br>
+					<div class="row"> <!-- Top of Form Lables -->
+						<div class ="col-xs-3 col-xs-offset-6">
+							Roll 1
+						</div>
+						<div class ="col-xs-3">
+							Roll 2
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6">
+							How many dice?
+						</div>
+						<div class="col-xs-3">
+							<input id="numDice" type="number"  min="1" max="1000" placeholder="#">
+						</div>
+						<div class="col-xs-3">
+							<input id="numDice2" type="number"  min="1" max="1000" placeholder="#">
+						</div>
 
-					How many sides on the dice?
-					<input id="numSides" type="number" min="2" max="1000" placeholder="D12"><input id="numSides2" type="number" min="2" max="1000" placeholder="D12">
-				 	<br>
-			
-					Add a modifier or leave this blank. Modifier will be added as a constant to the sum of your roll.
-					<input id="constant" type="number"  min="-1000" max="1000" placeholder="mod">
-					<input id="constant2" type="number"  min="-1000" max="1000" placeholder="mod">
+					</div>
+
+
+
+					<div class="row">
+						<div class="col-xs-6">
+							How many sides on the dice?
+						</div>
+						<div class="col-xs-3">
+							<input id="numSides" type="number" min="2" max="1000" placeholder="D12">
+						</div>
+						<div class="col-xs-3">
+							<input id="numSides2" type="number" min="2" max="1000" placeholder="D12">
+						</div>
+					</div>
+
+					 
+					<div class="row">
+						<div class="col-xs-6">
+							Add a modifier or leave this blank. Modifier will be added as a constant to the sum of your roll.
+						</div>
+						<div class="col-xs-3">
+							<input id="constant" type="number"  min="-1000" max="1000" placeholder="mod">
+						</div>
+						<div class="col-xs-3">
+							<input id="constant2" type="number"  min="-1000" max="1000" placeholder="mod">
+							
+						</div>
+					</div>
 						
 					<br>
 					<button type="button" id="rollStatBut"> Roll </button>
 				</form> 
-			
+			</div>
+			<div class="col-xs-8">
 					<div id="loading"></div>
-					<div class="col-xs-12" id="rollsum"> </div>
-					<div class="col-xs-12" id="rollsum2"> </div>
+
 					<!-- LINE CHART -->
-					<div id="chartcontainer">This is just a replacement in case Javascript is not available or used for SEO purposes</div>
+					<div id="chartcontainer"></div>
 					<!-- PIE CHART -->
-					<div id="chartid">This is just a replacement in case Javascript is not available or used for SEO purposes</div>
+					<div id="chartid"></div>
 				</div>
 			</div>
 

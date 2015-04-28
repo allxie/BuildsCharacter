@@ -28,9 +28,6 @@ Roll.prototype.roll = function(){
 	this.dice.forEach(function(die){
 
 		die.roll();
-		// console.log("result: " + die.result);
-		// console.log("sum 1 :" + _this.sum);
-		// console.log(typeof die.result);
 		//this spells out each individual die roll
 		//document.getElementById("individual").innerHTML += die.result + "  +  ";
 		_this.sum += die.result;
@@ -51,20 +48,29 @@ Roll.prototype.init = function(numDice, numSides){
 
 
 
-
-
-
 window.onload = function(){
 // DICE STATS COMPARE ETC.
 
 
-
 //complete two different rolls
 //Compare the two rolls
-//do this 1000 times
+//do this 10000 times
 //display numbers each time won/ percent times
 
 //Dice graphs
+ //function to make a bar graph
+	makeGraph = function(dataArray){
+	var myChart = new JSChart('chartcontainer', 'bar');
+	myChart.setDataArray(dataArray);
+	myChart.setBarColor('#16a085', 1);
+	myChart.setBarColor('#9CCEF0', 2);
+	myChart.resize(600, 400);
+	myChart.setAxisNameX('Possible Roll Results');
+	myChart.setAxisNameY('% of Rolls');
+	myChart.draw();
+	}
+ makeGraph([[" ", 0, 0]])
+
 
 //roll a roll 1000 times
 //plot a graph of numbers of times BY sums
@@ -72,14 +78,13 @@ window.onload = function(){
 
 	var rollStatBut = document.getElementById("rollStatBut");
 	var loadElves = function(){
-		document.getElementById("rollsum").innerHTML = "Please be patient while our elves roll thousands and thousands of dice for you.";
+		//document.getElementById("rollsum").innerHTML = "Please be patient while our elves roll thousands and thousands of dice for you.";
 		statsCalc();
 	};
 	rollStatBut.onclick = function(){
 		loadElves();
 	};
 	var statsCalc = function(){
-		console.log("CLICKED!");
 		//grabs the three forms
 		var numDice = document.getElementById("numDice").value || 1;
 		var numDice2 = document.getElementById("numDice2").value ||1 ;
@@ -103,25 +108,22 @@ window.onload = function(){
 				var max = (Number(numDice2)*Number(numSides2)) +Number(constant2);
 			};
 
-			console.log("MIN IS", min);
-			console.log("MAX IS", max);
-
 			//initializes all the columns for the graph. These are each empty.
 		for (k = min; k <= max; k++){
 			//prepares the name of the column
-			var unit = "Unit_" + k;
+
+			//unit needs to be a string
+			var unit = " " + k;
 			var arr = new Array(unit, 0, 0);
 			myData.push(arr);
-			//console.log("earlyData: ", myData);
+
 		}
 
-		console.log("MYDATA IS", myData);
-		
+		//initializes the winner variables
 		var oneWins = 0;
 		var twoWins = 0;
 		var tie = 0;
 		
-
 		//this for loop actually rolls the dice all the times you want it to
 		for (var i = 0; i < 10000; i++){
 			//don't block event loop
@@ -157,22 +159,13 @@ window.onload = function(){
 				
 			 //end for loop
 	}
-		//puts the sum where we want it.
-		document.getElementById("rollsum2").innerHTML = "The first set wins: "+ oneWins/10 + "%. Tie: " + tie/10 + "%. The second set wins: " + twoWins/10 + "% of the time.";
-		//document.getElementById("rollsum2").innerHTML = roll2.sum;
-		//return ratio;
-		//console.log("The first set wins "+ oneWins + "% of the time.");
+
+	//Actually make bar chart
+	makeGraph(myData);
 	
-	//bar chart
-	var myChart = new JSChart('chartcontainer', 'bar');
-	myChart.setDataArray(myData);
-	myChart.setBarColor('#2D6B96', 1);
-	myChart.setBarColor('#9CCEF0', 2);
-	myChart.draw();
- 
  	//pie chart
 	var myPieData = new Array(['Roll 1 Wins', Number(oneWins/100)], ['Roll 2 Wins', Number(twoWins/100)], ['Tie', Number(tie/100)]);
-	var colors = ['#FACC00', '#FB9900', '#FB6600'];
+	var colors = ['#16a085', '#9CCEF0', '#bdc3c7'];
 	var myChart = new JSChart('chartid', 'pie');
 	myChart.setDataArray(myPieData);
 	myChart.colorizePie(colors);
@@ -182,21 +175,6 @@ window.onload = function(){
 	myChart.draw();
 
 	};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 } //end onload
