@@ -81,12 +81,12 @@ window.onload = function(){
 	var statsCalc = function(){
 		console.log("CLICKED!");
 		//grabs the three forms
-		var numDice = document.getElementById("numDice").value;
-		var numDice2 = document.getElementById("numDice2").value;
-		var numSides = document.getElementById("numSides").value;
-		var numSides2 = document.getElementById("numSides2").value;
-		var constant = document.getElementById("constant").value;
-		var constant2 = document.getElementById("constant2").value;
+		var numDice = document.getElementById("numDice").value || 1;
+		var numDice2 = document.getElementById("numDice2").value ||1 ;
+		var numSides = document.getElementById("numSides").value || 2;
+		var numSides2 = document.getElementById("numSides2").value || 2;
+		var constant = document.getElementById("constant").value || 0;
+		var constant2 = document.getElementById("constant2").value || 0;
 		var myData = new Array(); //initializes the data array for the graph
 
 		//chooses the dimentions of x axis of the graph
@@ -123,45 +123,28 @@ window.onload = function(){
 		
 
 		//this for loop actually rolls the dice all the times you want it to
-		for (var i = 0; i < 1000; i++){
+		for (var i = 0; i < 10000; i++){
 			//don't block event loop
 			var roll1 = new Roll(constant);
 			var roll2 = new Roll(constant2);
-			console.log("ROLL1", roll1);
-			console.log("ROLL2", roll2);
 
+			//actually rolls the two sets
 			roll1.init(numDice, numSides);
 			roll2.init(numDice2, numSides2);
 			roll1.roll();
 			roll2.roll();
 
-			console.log("SUM1", roll1.sum);
-			console.log("SUM2", roll2.sum);
-
-			
-			//finds the index of that result
+			//finds the index of that result for the graph
 			var ind1 = Number(roll1.sum) - min;
 			var ind2 = Number(roll2.sum) - min;
-			console.log("IND1", ind1);
-			console.log("IND2", ind2);
-			//adds one to the specific index of the roll 
-			// myData[ind1[1]]+=1;
-			// myData[ind2[2]]+=1;
+
+
 			var dat1 = myData[ind1];
 			var dat2 = myData[ind2];
-			console.log("DAT1", dat1);
-			console.log("DAT2", dat2);
-			//console.log("for Mike: " + myData);
-			//console.log("sum :" + roll1.sum);
-			//console.log("sum 2: " + roll2.sum);
-			dat1[1] = dat1[1] + 1;
-			//console.log("for Mike Again: " + myData);
-			dat2[2] = dat2[2] + 1;
-			console.log("DAT1 INC", dat1);
-			console.log("DAT2 INC", dat2);
 
-	//		console.log("dat2 dogs : " + dat2);
-			//console.log("INDEX 1: " + dat1[1] + " dat2: " + dat2[2]);
+			//adds one to the index to align correctly
+			dat1[1] = dat1[1] + 1;
+			dat2[2] = dat2[2] + 1;
 
 				//determines winner
 				if(roll1.sum > roll2.sum){
@@ -172,7 +155,6 @@ window.onload = function(){
 					tie += 1;
 				}
 				
-			console.log("myData: " + myData);
 			 //end for loop
 	}
 		//puts the sum where we want it.
@@ -181,10 +163,27 @@ window.onload = function(){
 		//return ratio;
 		//console.log("The first set wins "+ oneWins + "% of the time.");
 	
+	//bar chart
 	var myChart = new JSChart('chartcontainer', 'bar');
 	myChart.setDataArray(myData);
+	myChart.setBarColor('#2D6B96', 1);
+	myChart.setBarColor('#9CCEF0', 2);
 	myChart.draw();
+ 
+ 	//pie chart
+	var myPieData = new Array(['Roll 1 Wins', Number(oneWins/100)], ['Roll 2 Wins', Number(twoWins/100)], ['Tie', Number(tie/100)]);
+	var colors = ['#FACC00', '#FB9900', '#FB6600'];
+	var myChart = new JSChart('chartid', 'pie');
+	myChart.setDataArray(myPieData);
+	myChart.colorizePie(colors);
+	myChart.setTitleColor('#857D7D');
+	myChart.setPieUnitsColor('#9B9B9B');
+	myChart.setPieValuesColor('#6A0000');
+	myChart.draw();
+
 	};
+
+
 
 
 
