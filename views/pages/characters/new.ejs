@@ -10,27 +10,8 @@
 <body>
 <div class="wrapper">
 				<!-- navbar -->
-	<div class="navbar navbar-default navbar-static-top" id="navbar-group" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">BuildsCharacter</a>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/">Home</a></li>
-					<li><a href="/dice">Dice </a></li>
-					<li><a href="/characters/new"> New Character</a></li>
-					<li><a id="logout" href="#">Logout</a><form id="logoutForm" style="display: none;" action="/logout?_method=DELETE" method="POST"></form></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+
+<%- include ../../partials/header.ejs %>
 
 		<!-- end navbar -->
 	<div class="container">
@@ -72,12 +53,17 @@
 							<textarea name="character[background]" type="text" placeholder="background"> </textarea>
 						</div>
 						<div  class="row">
-							<div id="putBox" class="col-xs-4"> <!-- putting boxes in here: two boxes per each  -->
+							<div class="col-xs-12">
+								<button type="button" id="addBox"> Add a Stat </button>
+							</div>
+						</div>
+						<div class="row">
+							<div id="putBox" class="col-xs-7"> <!-- putting boxes in here: two boxes per each  -->
 							</div>
 						</div>
 					</div>
 					<br>
-								<button type="button" id="addBox"> Add a Stat </button>
+								
 							
 								
 								<br>

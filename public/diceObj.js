@@ -88,7 +88,7 @@ var counter = 0;
 	el.onclick = function(){
 //makes the box and connects it to the stat model
 		var stat = $("<div class='enterStat'>" 	
-									+ "Name: <input name='stats[" + counter + "][name]' type='text' placeholder='strength' id='statNameBox'>"
+									+ "Name: <input name='stats[" + counter + "][name]' type='text' placeholder='str, wis' id='statNameBox'>"
 									+ "Value: <input type='number'name='stats[" + counter + "][value]' id='stats-value-"+counter+"'></div>");
 		counter++;
 		$("#putBox").append(stat);

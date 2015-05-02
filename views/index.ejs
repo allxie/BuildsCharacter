@@ -4,34 +4,15 @@
 	<!-- Brings in bootstrap and my stylesheet -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/stylesheets/stylesheet.css">
+	<script src="https://code.jquery.com/jquery-1.11.2.min.js"> </script>
 	<meta charset="UTF-8">
 	<title>Home</title>
 </head>
 <body>
 <div class="wrapper">
 	<!-- navbar -->
-	<div class="navbar navbar-default navbar-static-top" id="navbar-group" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/">BuildsCharacter</a>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/">Home</a></li>
-					<li><a href="/dice">Dice </a></li>
-					<li><a href="/characters/new"> New Character</a></li>
-					<li><a href="/signup">Sign Up</a></li>
-					<li><a href="/login">Login</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+
+<%- include partials/header.ejs %>
 
 		<!-- end navbar -->
 
@@ -40,7 +21,7 @@
 			
 
 
-			<div class="row">
+			<div class="bump row">
 				<div class="col-md-4 tabs ">
 					<div class="col-md-8 col-md-offset-2">
 						<a href="/characters/new"><img src="/charicon.jpeg" height="171px" /></a>
@@ -101,7 +82,11 @@
 		</div>
 	</div>
 </div>
-	
+	<script> 
+$("#logout").click(function(){
+	$("#logoutForm").trigger("submit");
+})
+</script>
 	
 </body>
 </html>

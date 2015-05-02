@@ -12,33 +12,13 @@
 <body>
 <div class="wrapper">
 <!-- navbar -->
-	<div class="navbar navbar-default navbar-static-top" id="navbar-group" role="navigation">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="/">BuildsCharacter</a>
-		</div>
-		<div class="navbar-collapse collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/">Home</a></li>
-				<li><a href="/dice">Dice </a></li>
-				<li><a href="/characters/new"> New Character</a></li>
-				<li><a href="/signup">Sign Up</a></li>
-				<li><a href="/login">Login</a></li>
-			</ul>
-		</div>
-	</div>
-</div>
+
+<%- include partials/header.ejs %>
 
 <!-- end navbar -->
 
 	<div class="container">
-		<div class="row">
+		<div class="bump row">
 			<div class="col-xs-4" id="twoRowsForm">
 				<h2>Dice Stat Comparison </h2> 
 				<div> <p> Enter two rolls to compare. Each roll will have a number of dice to add together, a number of sides that are on each of those dice, and an additional number to add as a constant, which can be zero. </p> </div>
@@ -107,9 +87,6 @@
 			</div>
 
 
-
-
-
 		<div class="push"></div>
 	</div>
 
@@ -125,5 +102,10 @@
 
 </script>
 	<script src="/stats_and_graphs.js"></script>
+	<script> 
+$("#logout").click(function(){
+	$("#logoutForm").trigger("submit");
+})
+</script>
 </body>
 </html>

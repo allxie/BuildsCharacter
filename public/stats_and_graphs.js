@@ -86,6 +86,7 @@ window.onload = function(){
 	};
 	var statsCalc = function(){
 		//grabs the three forms
+		// maybe fix ors
 		var numDice = document.getElementById("numDice").value || 1;
 		var numDice2 = document.getElementById("numDice2").value ||1 ;
 		var numSides = document.getElementById("numSides").value || 2;

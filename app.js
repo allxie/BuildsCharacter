@@ -32,6 +32,7 @@ app.set('view engine', 'ejs');
 app.use("/", function(req, res, next){
 	req.login = function(user){
 		req.session.UserId = user.id;
+		req.session.loggedIn = true;
 	};
 	req.currentUser = function(){
 		return db.User.find(req.session.UserId)
@@ -42,6 +43,7 @@ app.use("/", function(req, res, next){
 	};
 	req.logout = function(){
 		req.session.UserId = null;
+		req.session.loggedIn = false;
 		req.user = null;
 	}
 	next();
@@ -73,17 +75,17 @@ app.get("/", function(req, res){
 			if(dbUser){
 				res.redirect("/profile");
 			} else {
-				res.render("index");
+				res.render("index", {loggedIn: req.session.loggedIn});
 			}
 		});	
 });
 app.get("/dice", function(req,res){
-	res.render("dice");
+	res.render("dice", {loggedIn: req.session.loggedIn});
 });
 
 //USER ROUTES
 app.get("/signup", function(req,res){
-	res.render("pages/signup");
+	res.render("pages/signup", {loggedIn: req.session.loggedIn});
 });
 
 //signs the user up
@@ -97,7 +99,7 @@ app.post("/signup", function(req,res){
 });
 
 app.get("/login", function(req, res){
-	res.render("pages/login");
+	res.render("pages/login", {loggedIn: req.session.loggedIn});
 });
 
 app.post("/login", function(req, res){
@@ -132,7 +134,7 @@ app.get("/characters", function(req, res){
 			}
 		})
 			.then(function(characters){
-				res.render("pages/profile", {ejsUser: dbUser, ejsCharacters: characters});
+				res.render("pages/profile", {ejsUser: dbUser, ejsCharacters: characters, loggedIn: req.session.loggedIn});
 			});
 		} else {
 			res.redirect("/login");
@@ -158,8 +160,8 @@ app.get("/characters/new", function (req,res){
 				console.log("hello!! Aloha.");
 				//console.log(nameBox);
 				request('http://www.behindthename.com/api/random.php?usage=ita&key='+key, function(err, resp, body) {
- 					var name = body.match(/<name>(\w+)<\/name>/)[1];
- 					res.render("pages/characters/new", {ejsName : name});
+ 					var name = body.match(/<name>(\w+)<\/name>/) ? body.match(/<name>(\w+)<\/name>/)[1] : " ";
+ 					res.render("pages/characters/new", {ejsName : name, loggedIn: req.session.loggedIn});
  			})
 
 			} else {
@@ -179,9 +181,6 @@ app.delete("/characters/:id", function (req,res){
 	})
 });
 
-app.get("/randName", function (req,res){
-	
-});
 
 //creates a new character
 app.post("/characters", function (req, res){
@@ -210,13 +209,11 @@ app.post("/characters", function (req, res){
 				res.redirect("/login");
 			}
 		});
-
 });
 
 app.get("/profile", function (req,res) {
 	res.redirect("/characters");
 });
-
 
 
 app.get("/characters/:id", function (req, res){
@@ -226,20 +223,16 @@ app.get("/characters/:id", function (req, res){
 			CharacterId: character.id
 		}}).then(function(stats){
 			 res.render("pages/characters/oneCharacter", {
-			 	theStats: stats, ejsCharacter: character, id: id
+			 	theStats: stats, ejsCharacter: character, id: id, loggedIn: req.session.loggedIn
 			 });
 		});
 	});
-	
 });
 
 app.get("/dicestats", function (req, res){
-	res.render("dice_stats");
+	res.render("dice_stats", {loggedIn: req.session.loggedIn});
 });
 
-app.get("/test", function (req, res){
-	res.render("graph_test");
-});
 
 
 app.listen(process.env.PORT || 3000);
