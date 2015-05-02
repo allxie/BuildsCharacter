@@ -1,5 +1,8 @@
 # BuildsCharacter
 
+The live version can be found at...
+https://buildscharacter.herokuapp.com/
+
 Builds Character is a tool for role playing gamers, DMs, and dice game makers to streamline the process of building games and characters. The app contains the following features:
 
 #### Dice Simulator: 
