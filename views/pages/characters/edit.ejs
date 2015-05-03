@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/stylesheet.css">
+	<meta charset="UTF-8">
+	<script src="https://code.jquery.com/jquery-1.11.2.min.js"> </script>
+	<title>Edit Character</title>
+</head>
+<body>
+<div class="wrapper">
+				<!-- navbar -->
+
+<%- include ../../partials/header.ejs %>
+
+		<!-- end navbar -->
+	<div class="container">
+		<div class="bump row">
+			
+		</div>
+		<div class="row">
+			<div class="col-xs-8">
+				<form id="newCharForm" name="newChar" action="/characters" method="POST">
+					<div class="row">
+						<div class="col-xs-6">
+							Name:
+						</div>
+						<div class="col-xs-6">
+							<input id = "nameBox" name="character[name]" type="text" placeholder="Character Name" value="<%= ejsCharacter.name %>"> 
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6">
+							Gender:
+						</div>
+						<div class="col-xs-6">
+							<input name="character[gender]" type="text" value="<%= ejsCharacter.gender %>">
+						</div>
+					</div>
+						<div class="row">
+						<div class="col-xs-6">
+							Enter a race or species:
+						</div>
+						<div class="col-xs-6">
+							<input name="character[race]" type="text" value="<%=ejsCharacter.race %>" >
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6">
+							Description, background, or history of your character: </br>
+						</div>
+						<div class="col-xs-6">
+							<textarea name="character[background]" type="text"> <%= ejsCharacter.background %> </textarea>
+						</div>
+					<!-- STATS -->
+						
+					<div  class="row">
+						<div class="col-xs-12">
+							<button type="button" id="addBox"> Add a Stat </button>
+						</div>
+					</div>
+
+
+						<div><h1>Stats:</h1>
+					<% theStats.forEach(function(stat){ %>
+					<div class="row">
+						<div class='enterStat'>
+							Name: <input name='stats[" + counter + "][name]' type='text' value='<%= stat.name %>' id='statNameBox'>
+
+							Value: <input type='number'name='stats[" + counter + "][value]' id='stats-value-"+counter+"' value = "<%= stat.value %>"></div>
+						</div>
+					</div>
+					<% }) %>
+				</div>
+
+
+						
+						<div class="row">
+							<div id="putBox" class="col-xs-7"> <!-- putting boxes in here: two boxes per each  -->
+							</div>
+						</div>
+					</div>
+					<br>
+								
+							
+								
+								<br>
+								
+								<br>
+							<button id="create"> Update Character </button>
+				</form>
+			</div>
+			<div class="col-xs-4 calc">
+				<div class="row noback">
+					<div class="col-xs-3">
+						<img src="/bluedice.jpeg" height="62px">
+					</div>
+					<div class="col-xs-9">
+						<h3>Roll some dice</h3>
+					</div>
+				</div>
+				<div class="row spacer">
+					<div class="col-xs-7">
+						<form>
+							<div class="row">
+								<div class="col-xs-6">
+									<h3> #Dice </h3>
+								</div>
+								<div class="col-xs-6">
+									<input id="numDice" type="number"  min="1" max="100000" placeholder="#"> 
+								</div>
+							</div>
+							<div class = "row">
+								<div class="col-xs-6">
+									<h3> Sides </h3>
+								</div>
+								<div class="col-xs-6">
+									<input id="numSides" type="number" min="2" max="1000" placeholder="D12" > <br>
+								</div>
+							</div>
+							<div class = "row">
+								<div class="col-xs-6">
+									<h3>+Mod</h3>
+								</div>
+								<div class="col-xs-6">
+									<input id="constant" type="number"  min="-1000" max="1000" placeholder="mod">
+								</div>
+							</div>
+							<br>
+							<button type="button" id="rollBut"> Roll </button>
+							<button type="button" id="rollfill"> Roll and Fill Stats </button>
+						</form> 
+					</div>
+					<div class="col-xs-4">
+						<div class="row">
+							<div class="col-xs-12" id="individual"> </div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12 resultnew" id="rollsum"> </div>
+						</div>
+					</div>
+				</div>
+			</div> <!-- end calculator -->
+		<div class="push"></div>
+		</div>
+			<!-- <form method="GET" action="/randName"> <button> Random Name </button> </form> -->
+			<!-- <button> Random Gender </button>
+			<button> Random Race </button> -->	
+	</div>
+</div>		
+<div class="navbar navbar-default navbar-static-bottom" role="navigation">
+	<div class="container">
+		<div class="navbar-text pull-left">
+			<p> &copy; 2015 Allxie Cleary  </p>
+		</div>
+	</div>
+</div>		
+<script> 
+	$("#logout").click(function(){
+	$("#logoutForm").trigger("submit");
+})
+</script>
+	<script src="/diceObj.js"></script>
+</body>
+</html>

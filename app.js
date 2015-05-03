@@ -172,16 +172,6 @@ app.get("/characters/new", function (req,res){
 
 
 
-app.delete("/characters/:id", function (req,res){
-	db.Character.find(req.params.id).then(function(characters){
-		characters.destroy()
-		.then(function(){
-			res.redirect("/characters");
-		})
-	})
-});
-
-
 //creates a new character
 app.post("/characters", function (req, res){
 	console.log("THIS IS REQ.BODY", req.body);
@@ -211,6 +201,15 @@ app.post("/characters", function (req, res){
 		});
 });
 
+app.delete("/characters/:id", function (req,res){
+	db.Character.find(req.params.id).then(function(characters){
+		characters.destroy()
+		.then(function(){
+			res.redirect("/characters");
+		})
+	})
+});
+
 app.get("/profile", function (req,res) {
 	res.redirect("/characters");
 });
@@ -228,6 +227,40 @@ app.get("/characters/:id", function (req, res){
 		});
 	});
 });
+
+// Edit characters WORKING ON THIS
+app.get("/characters/:id/edit", function (req, res){
+	var id = req.params.id;
+
+	db.Character.find(id)
+	  .then(function(character){
+	  	db.Stat.findAll({where: {
+	  		CharacterId: character.id
+	  	}}).then(function(stats){
+	  		res.render('pages/characters/edit',{theStats: stats, ejsCharacter: character, id: id, loggedIn: req.session.loggedIn});
+	  		});
+	});
+});
+//WORKING ON THIS --UPDATE
+// app.put("/characters/:id", function (req, res){
+// // Grab URL PARAM ID
+// 	var id = req.params.id;
+
+// 	// Grab the body of the request
+// 	var formCharacter = req.body.article;
+
+// 	// Find the article with that id
+// 	db.Character.find(id)
+// 	  .then(function(dbCharacter){
+// 	  	// Update the article
+// 	  	dbCharacter.updateAttributes(formCharacter)
+// 	  	  .then(function(newChar){
+// 	  	  	// Redirect to articles show page
+// 	  	  	res.redirect('/characters/'+newChar.id);
+// 	  	  });
+// 	  });
+// });
+
 
 app.get("/dicestats", function (req, res){
 	res.render("dice_stats", {loggedIn: req.session.loggedIn});
