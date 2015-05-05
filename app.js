@@ -247,7 +247,7 @@ app.get("/characters/:id/edit", function (req, res){
 // 	var id = req.params.id;
 
 // 	// Grab the body of the request
-// 	var formCharacter = req.body.article;
+// 	var formCharacter = req.body.character;
 
 // 	// Find the article with that id
 // 	db.Character.find(id)
